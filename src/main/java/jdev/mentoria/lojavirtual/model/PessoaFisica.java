@@ -1,10 +1,8 @@
 package jdev.mentoria.lojavirtual.model;
 
 import java.util.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -39,6 +37,5 @@ public class PessoaFisica extends Pessoa {
 	public void setDataNascimento(Date dataNascimento) {
 		DataNascimento = dataNascimento;
 	}
-
 
 }
