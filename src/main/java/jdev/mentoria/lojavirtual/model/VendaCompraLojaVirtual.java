@@ -1,5 +1,5 @@
 package jdev.mentoria.lojavirtual.model;
 
-public @interface NotNull {
+public class VendaCompraLojaVirtual {
 
 }

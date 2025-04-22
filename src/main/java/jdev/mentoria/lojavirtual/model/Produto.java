@@ -49,6 +49,12 @@ public class Produto implements Serializable {
 	private MarcaProduto marcaProduto = new MarcaProduto();
 	private List<ImagemProduto> imagens = new ArrayList<ImagemProduto>();
 	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 	public Long getId() {
 		return id;
 	}
