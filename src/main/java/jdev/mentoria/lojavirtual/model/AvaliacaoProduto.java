@@ -2,10 +2,15 @@ package jdev.mentoria.lojavirtual.model;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -20,12 +25,20 @@ public class AvaliacaoProduto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_avaliacao_produto")
 	private Long id;
 	
+	@Column(nullable = false)
 	private Integer nota;
 	
+	@Column(nullable = false)
 	private String descricao;
+	
+	@ManyToOne(targetEntity = PessoaFisica.class)
+	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
 	private PessoaFisica pessoa;
+	
+	@ManyToOne
+	@JoinColumn(name = "produto_id", nullable = false, foreignKey = @ForeignKey(value = 	ConstraintMode.CONSTRAINT, name = "produto_fk"))
 	private Produto produto;
-	private PessoaJuridica empresa;
+	
 	public Long getId() {
 		return id;
 	}
@@ -56,12 +69,7 @@ public class AvaliacaoProduto implements Serializable{
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	public PessoaJuridica getEmpresa() {
-		return empresa;
-	}
-	public void setEmpresa(PessoaJuridica empresa) {
-		this.empresa = empresa;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

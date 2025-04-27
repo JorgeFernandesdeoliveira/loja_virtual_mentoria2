@@ -2,6 +2,7 @@ package jdev.mentoria.lojavirtual.model;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,12 +29,24 @@ public class Endereco implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_endereco")
 	private Long id;
 	
+	@Column(nullable = false)
 	private String ruaLogra;
+	
+	@Column(nullable = false)
 	private String cep;
+	
+	@Column(nullable = false)
 	private String numero;
+	
 	private String complemento;
+	
+	@Column(nullable = false)
 	private String bairro;
+	
+	@Column(nullable = false)
 	private String uf;
+	
+	@Column(nullable = false)
 	private String cidade;
 
 
