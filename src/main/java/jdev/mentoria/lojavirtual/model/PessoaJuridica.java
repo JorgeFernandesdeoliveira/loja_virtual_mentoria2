@@ -26,6 +26,10 @@ public class PessoaJuridica extends Pessoa {
 	@Column(nullable = false)
 	private String razaoSocial;
 	
+
+	@Column(nullable = false)
+	private String tipoEspecial;
+	
 	private String categoria;
 	
 	public String getCnpj() {

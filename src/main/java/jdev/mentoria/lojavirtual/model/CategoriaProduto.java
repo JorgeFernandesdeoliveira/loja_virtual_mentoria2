@@ -24,6 +24,9 @@ public class CategoriaProduto implements Serializable{
 	@Column(name = "nome_desc", nullable = false )
 	private String nomeDesc;
 	
+
+	@Column(nullable = false )
+	private String ProdDesc;
 	
 	/**
 	 * @return the id
@@ -51,6 +54,13 @@ public class CategoriaProduto implements Serializable{
 	}
 	
 	
+	
+	public String getProdDesc() {
+		return ProdDesc;
+	}
+	public void setProdDesc(String prodDesc) {
+		ProdDesc = prodDesc;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
