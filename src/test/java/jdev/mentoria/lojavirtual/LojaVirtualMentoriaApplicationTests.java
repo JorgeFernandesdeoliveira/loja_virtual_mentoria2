@@ -1,4 +1,6 @@
 package jdev.mentoria.lojavirtual;
+
+import java.util.Calendar;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +39,14 @@ public class LojaVirtualMentoriaApplicationTests extends TestCase {
 
 	/* Teste do end-point de salvar */
 
-	@Test 
+	@Test
 	public void testRestApiCadastroAcesso() throws JsonProcessingException, Exception {
 
 		DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(this.wac);
 		MockMvc mockMvc = builder.build();
 
 		Acesso acesso = new Acesso();
-		acesso.setDescricao("ROLE_COMPRADOR(A)");
+		acesso.setDescricao("ROLE_COMPRADOR(A) SR.JORGE" + Calendar.getInstance().getTimeInMillis());
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
@@ -139,7 +141,7 @@ public class LojaVirtualMentoriaApplicationTests extends TestCase {
 		assertEquals(acesso.getId(), acesso.getId());
 
 	}
-	
+
 	@Test
 	public void testRestApiObterAcessoDesc() throws JsonProcessingException, Exception {
 
@@ -147,36 +149,39 @@ public class LojaVirtualMentoriaApplicationTests extends TestCase {
 		MockMvc mockMvc = builder.build();
 
 		Acesso acesso = new Acesso();
-		 
+
 		acesso.setDescricao("ROLE_TESTE_OBTER_LIST");
 
 		acesso = acessoRepository.save(acesso);
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		ResultActions retornoApi = mockMvc.perform(MockMvcRequestBuilders.get("/buscarPorDesc/OBTER_LIST")
-				.content(objectMapper.writeValueAsString(acesso)).accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON));
+		ResultActions retornoApi = mockMvc.perform(
+				MockMvcRequestBuilders.get("/buscarPorDesc/OBTER_LIST").content(objectMapper.writeValueAsString(acesso))
+						.accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON));
 
 		assertEquals(200, retornoApi.andReturn().getResponse().getStatus());
-		
-		 List<Acesso> retornoApiList = objectMapper.readValue(retornoApi.andReturn().getResponse()
-				 .getContentAsString(), new TypeReference<List<Acesso>> () {});
-		
+
+		List<Acesso> retornoApiList = objectMapper.readValue(retornoApi.andReturn().getResponse().getContentAsString(),
+				new TypeReference<List<Acesso>>() {
+				});
+
 		assertEquals(1, retornoApiList.size());
-		
+
 		assertEquals(acesso.getDescricao(), retornoApiList.get(0).getDescricao());
 
 		acessoRepository.deleteById(acesso.getId());
-	
-	}
 
+	}
 
 	@Test
 	void testCadastraAcesso() throws ExceptionMentoriaJava {
 
+		String descacesso = "ROLE_ADMIN" + Calendar.getInstance().getTimeInMillis();
+
 		Acesso acesso = new Acesso();
-		acesso.setDescricao("ROLE_ADMIN");
+
+		acesso.setDescricao(descacesso);
 
 		assertEquals(true, acesso.getId() == null);
 
