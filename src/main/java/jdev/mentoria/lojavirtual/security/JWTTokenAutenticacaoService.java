@@ -40,7 +40,7 @@ public class JWTTokenAutenticacaoService {
 		
 		/*Montagem do Token*/
 		
-		String JWT = Jwts.builder()./*Chama o gerador de token*/
+		String JWT = Jwts.builder(). /*Chama o gerador de token*/
 				setSubject(username) /*Adiciona o user*/
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET).compact(); /*Temp de expiração*/
@@ -68,7 +68,7 @@ public class JWTTokenAutenticacaoService {
 		
 		if (token != null) {
 			
-			String tokenLimpo = token.replace(TOKEN_PREFIX, "").trim();
+			String tokenLimpo = token.replace(TOKEN_PREFIX, " ").trim();
 			
 			/*Faz a validacao do token do usuário na requisicao e obtem o USER*/
 			String user = Jwts.parser().

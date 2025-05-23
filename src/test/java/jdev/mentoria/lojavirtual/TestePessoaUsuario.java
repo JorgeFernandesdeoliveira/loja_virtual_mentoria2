@@ -26,14 +26,14 @@ public class TestePessoaUsuario extends TestCase {
 	public void testCadPessoaFisica() {
 
 		PessoaJuridica pessoaJuridica = new PessoaJuridica();
-		pessoaJuridica.setCnpj("060446364/0001-40");
-		pessoaJuridica.setNome("Jorge Fernandes de Oliveira");
-		pessoaJuridica.setEmail("jorgeoliveira.surdo@gmail.com");
-		pessoaJuridica.setTelefone("82999643508");
-		pessoaJuridica.setInscEstadual("54525555");
-		pessoaJuridica.setInscMunicipal("41242149");
-		pessoaJuridica.setNomeFantasia("malu");
-		pessoaJuridica.setRazaoSocial("malu S/A");
+		pessoaJuridica.setCnpj("161.668.698/0001-88");
+		pessoaJuridica.setNome("Jorge Fernandes de Oliveirw");
+		pessoaJuridica.setEmail("jorgeoliveiraw@gmail.com");
+		pessoaJuridica.setTelefone("(82)999643508");
+		pessoaJuridica.setInscEstadual("12543684");
+		pessoaJuridica.setInscMunicipal("2541365-5");
+		pessoaJuridica.setNomeFantasia("Oeste magalu");
+		pessoaJuridica.setRazaoSocial("Oeste MAGALU");
 
 		pessoaRepository.save(pessoaJuridica);
 
