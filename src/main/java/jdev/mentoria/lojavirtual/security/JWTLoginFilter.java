@@ -21,11 +21,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jdev.mentoria.lojavirtual.model.Usuario;
 
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
-	
+
 	public JWTLoginFilter(String url, AuthenticationManager authenticationManager) {
-		
+
 		super(new AntPathRequestMatcher(url));
-		
+
 		setAuthenticationManager(authenticationManager);
 
 	}
@@ -38,35 +38,36 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException, IOException, ServletException {
-		
+
 		Usuario user = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
-		
-		return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(user.getLogin(), user.getSenha()));
+
+		return getAuthenticationManager()
+				.authenticate(new UsernamePasswordAuthenticationToken(user.getLogin(), user.getSenha()));
 	}
-	
+
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		
+
 		try {
 			new JWTTokenAutenticacaoService().addAuthentication(response, authResult.getName());
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException failed) throws IOException, ServletException {
-		
+
 		if (failed instanceof BadCredentialsException) {
 			response.getWriter().write("User e senha não encontrado");
 		} else {
 			response.getWriter().write("Falha ao logar: " + failed.getMessage());
 		}
-		
-		//super.unsuccessfulAuthentication(request, response, failed);
+
+		// super.unsuccessfulAuthentication(request, response, failed);
 	}
 
 }

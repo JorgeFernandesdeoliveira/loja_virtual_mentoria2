@@ -17,52 +17,46 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "categoria_produto")
 @SequenceGenerator(name = "seq_categoria_produto", sequenceName = "seq_categoria_produto", allocationSize = 1, initialValue = 1)
-public class CategoriaProduto implements Serializable{
+public class CategoriaProduto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_categoria_produto")
 	private Long id;
-	
-	@Column(name = "nome_desc", nullable = false )
+
+	@Column(name = "nome_desc", nullable = false)
 	private String nomeDesc;
 	
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "empresa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
 	private Pessoa empresa;
-	
-	public Pessoa getEmpresa() {
-		return empresa;
-	}
-	public void setEmpresa(Pessoa empresa) {
-		this.empresa = empresa;
-	}
-	/**
-	 * @return the id
-	 */
+
 	public Long getId() {
 		return id;
 	}
+
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the nomeDesc
 	 */
 	public String getNomeDesc() {
 		return nomeDesc;
 	}
+
 	/**
 	 * @param nomeDesc the nomeDesc to set
 	 */
 	public void setNomeDesc(String nomeDesc) {
 		this.nomeDesc = nomeDesc;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,6 +64,7 @@ public class CategoriaProduto implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,6 +81,5 @@ public class CategoriaProduto implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }

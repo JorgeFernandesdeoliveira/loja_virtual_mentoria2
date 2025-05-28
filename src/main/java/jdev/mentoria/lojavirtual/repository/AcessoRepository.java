@@ -11,8 +11,8 @@ import jdev.mentoria.lojavirtual.model.Acesso;
 
 @Repository
 @Transactional
-public interface AcessoRepository extends JpaRepository<Acesso, Long>{
-	
+public interface AcessoRepository extends JpaRepository<Acesso, Long> {
+
 	@Query("Select a from Acesso a where upper(trim(a.descricao)) like %?1%")
 	List<Acesso> buscarAcessoDesc(String desc);
 

@@ -6,16 +6,8 @@ import jdev.mentoria.lojavirtual.repository.UsuarioRepository;
 
 @Service
 public class PessoaUserService {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepositoy;
-
-	public UsuarioRepository getUsuarioRepositoy() {
-		return usuarioRepositoy;
-	}
-
-	public void setUsuarioRepositoy(UsuarioRepository usuarioRepositoy) {
-		this.usuarioRepositoy = usuarioRepositoy;
-	}
 
 }

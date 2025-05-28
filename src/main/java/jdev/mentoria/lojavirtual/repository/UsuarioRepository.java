@@ -9,6 +9,6 @@ import jdev.mentoria.lojavirtual.model.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
-	@Query(value = "select u from Usuario u where u.login = ?1")/*Consultar o Usuário no banco.*/
+	@Query(value = "select u from Usuario u where u.login = ?1") /* Consultar o Usuário no banco. */
 	Usuario findUserByLogin(String login);
 }

@@ -25,10 +25,10 @@ public class PessoaJuridica extends Pessoa {
 
 	@Column(nullable = false)
 	private String razaoSocial;
-	
+
 	private String categoria;
-	
-		public String getCategoria() {
+
+	public String getCategoria() {
 		return categoria;
 	}
 

@@ -1,10 +1,8 @@
 package jdev.mentoria.lojavirtual.enums;
 
 public enum TipoEndereco {
-	
 
-	COBRANCA("Cobrança"),
-	ENTREGA("Entrega");
+	COBRANCA("Cobrança"), ENTREGA("Entrega");
 
 	private String descricao;
 
@@ -19,11 +17,10 @@ public enum TipoEndereco {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.descricao;
 	}
-	
 
 }

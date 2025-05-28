@@ -72,24 +72,20 @@ public class Produto implements Serializable {
 	private Boolean alertaQtdeEstoque = Boolean.FALSE;
 
 	private Integer qtdeclique = 0;
-
-	@NotNull(message = "A empresa responsável deve ser informada")
+	
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "empresa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
 	private Pessoa empresa;
+	
+	
 
-	@NotNull(message = "A Categoria do Produto deve ser informada")
-	@ManyToOne(targetEntity = CategoriaProduto.class)
-	@JoinColumn(name = "categoria_produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "categoria_produto_id_fk"))
-	private CategoriaProduto categoriaProduto = new CategoriaProduto();
+	public Pessoa getEmpresa() {
+		return empresa;
+	}
 
-	@NotNull(message = "A Marca do Produto deve ser informada")
-	@ManyToOne(targetEntity = MarcaProduto.class)
-	@JoinColumn(name = "marca_produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "marca_produto_id_fk"))
-	private MarcaProduto marcaProduto = new MarcaProduto();
-
-	@OneToMany(mappedBy = "produto", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<ImagemProduto> imagens = new ArrayList<ImagemProduto>();
+	public void setEmpresa(Pessoa empresa) {
+		this.empresa = empresa;
+	}
 
 	public Boolean getAtivo() {
 		return ativo;
@@ -217,38 +213,6 @@ public class Produto implements Serializable {
 
 	public void setQtdeclique(Integer qtdeclique) {
 		this.qtdeclique = qtdeclique;
-	}
-
-	public Pessoa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Pessoa empresa) {
-		this.empresa = empresa;
-	}
-
-	public CategoriaProduto getCategoriaProduto() {
-		return categoriaProduto;
-	}
-
-	public void setCategoriaProduto(CategoriaProduto categoriaProduto) {
-		this.categoriaProduto = categoriaProduto;
-	}
-
-	public MarcaProduto getMarcaProduto() {
-		return marcaProduto;
-	}
-
-	public void setMarcaProduto(MarcaProduto marcaProduto) {
-		this.marcaProduto = marcaProduto;
-	}
-
-	public List<ImagemProduto> getImagens() {
-		return imagens;
-	}
-
-	public void setImagens(List<ImagemProduto> imagens) {
-		this.imagens = imagens;
 	}
 
 	@Override

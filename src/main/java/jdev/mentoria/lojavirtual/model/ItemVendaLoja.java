@@ -16,28 +16,37 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "item_venda_loja")
 @SequenceGenerator(name = "seq_item_venda_loja", sequenceName = "seq_item_venda_loja", allocationSize = 1, initialValue = 1)
-public class ItemVendaLoja implements Serializable{
+public class ItemVendaLoja implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_item_venda_loja")
 	private Long id;
-	
+
 	private Double quantidade;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "produto_fk"))
 	private Produto produto;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "vd_cp_loja_virtu_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "vd_cp_loja_virtu_fk"))
 	private VendaCompraLojaVirtual vendaCompraLojaVirtual;
 	
-	@ManyToOne(targetEntity = PessoaJuridica.class)
-	@JoinColumn(name = "empresa_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
-	private PessoaJuridica empresa;
+	@ManyToOne(targetEntity = Pessoa.class)
+	@JoinColumn(name = "empresa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
+	private Pessoa empresa;
+	
+	
+
+	public Pessoa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Pessoa empresa) {
+		this.empresa = empresa;
+	}
 
 	public Long getId() {
 		return id;
@@ -71,14 +80,6 @@ public class ItemVendaLoja implements Serializable{
 		this.vendaCompraLojaVirtual = vendaCompraLojaVirtual;
 	}
 
-	public PessoaJuridica getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(PessoaJuridica empresa) {
-		this.empresa = empresa;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,6 +104,5 @@ public class ItemVendaLoja implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }

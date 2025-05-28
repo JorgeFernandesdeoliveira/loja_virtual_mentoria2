@@ -22,9 +22,9 @@ public class Acesso implements GrantedAuthority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_acesso")
 	private Long id;
-	
+
 	@Column(nullable = false)
-	private String descricao; /* Acesso ex: ROLE_ADMIN ou ROLE_SECRETARIO*/
+	private String descricao; /* Acesso ex: ROLE_ADMIN ou ROLE_SECRETARIO */
 
 	@JsonIgnore
 	@Override
@@ -37,21 +37,17 @@ public class Acesso implements GrantedAuthority {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getDescricao() {
 		return descricao;
 	}
 
-
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
 
 	@Override
 	public int hashCode() {
