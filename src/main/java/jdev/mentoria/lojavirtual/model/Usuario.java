@@ -60,8 +60,6 @@ public class Usuario implements UserDetails {
 
 	private List<Acesso> acessos;
 	
-	
-
 	public Pessoa getEmpresa() {
 		return empresa;
 	}
