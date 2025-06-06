@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class ServiceSendEmail {
 	
 	private String userName = "jorgeoliveira.surdo@gmail.com";
-	private String senha = "Jm1824@1";
+	private String senha = "Jo@1824mm";
 	
 	@Async
 	public void enviarEmailHtml(String assunto, String mensagem, String emailDestino) throws MessagingException, UnsupportedEncodingException {
@@ -30,8 +30,8 @@ public class ServiceSendEmail {
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls", "false");
 		properties.put("mail.smtp.host", "smtp.gmail.com");
-		properties.put("mail.smtp.port", "465");
-		properties.put("mail.smtp.socketFactory.port", "465");
+		properties.put("mail.smtp.port", "587");
+		properties.put("mail.smtp.socketFactory.port", "587");
 		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		
 		Session session = Session.getInstance(properties, new Authenticator() {
@@ -52,7 +52,7 @@ public class ServiceSendEmail {
 		message.setFrom(new InternetAddress(userName, "Jorge - do Java Web", "UTF-8"));
 		message.setRecipients(Message.RecipientType.TO, toUser);
 		message.setSubject(assunto);
-		message.setText(mensagem);
+		message.setContent(mensagem, "text/html; charset=uft-8");
 		
 		Transport.send(message);
 		

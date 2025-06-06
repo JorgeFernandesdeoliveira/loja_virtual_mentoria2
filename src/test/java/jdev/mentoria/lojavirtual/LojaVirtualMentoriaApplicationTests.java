@@ -46,7 +46,7 @@ public class LojaVirtualMentoriaApplicationTests extends TestCase {
 		MockMvc mockMvc = builder.build();
 
 		Acesso acesso = new Acesso();
-		acesso.setDescricao("ROLE_COMPRADOR(A) SR.JORGE" + Calendar.getInstance().getTimeInMillis());
+		acesso.setDescricao("ROLE_COMPRADOR" + Calendar.getInstance().getTimeInMillis());
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
