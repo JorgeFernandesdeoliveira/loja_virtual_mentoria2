@@ -82,9 +82,9 @@ public class TestePessoaUsuario extends TestCase {
 		PessoaJuridica pessoaJuridica =  pessoaRepository.existeCnpjCadastrado("1647987989047");
 		
 		PessoaFisica pessoaFisica = new PessoaFisica();
-		pessoaFisica.setCpf("950.786.460-19");
+		pessoaFisica.setCpf("614.632.460-48");
 		pessoaFisica.setNome("Alex fernando");
-		pessoaFisica.setEmail("alex@gmail.com");
+		pessoaFisica.setEmail("alex2@gmail.com");
 		pessoaFisica.setTelefone("45999795800");
 		pessoaFisica.setEmpresa(pessoaJuridica);
 		
@@ -99,7 +99,6 @@ public class TestePessoaUsuario extends TestCase {
 		endereco1.setUf("PR");
 		endereco1.setCidade("Curitiba");
 		endereco1.setEmpresa(pessoaJuridica);
-		
 		
 		Endereco endereco2 = new Endereco();
 		endereco2.setBairro("Jd Maracana");
@@ -116,7 +115,6 @@ public class TestePessoaUsuario extends TestCase {
 		pessoaFisica.getEnderecos().add(endereco2);
 		pessoaFisica.getEnderecos().add(endereco1);
 
-
 		pessoaFisica = pessoaController.salvarPf(pessoaFisica).getBody();
 		
 		assertEquals(true, pessoaFisica.getId() > 0 );
@@ -127,8 +125,6 @@ public class TestePessoaUsuario extends TestCase {
 		
 		assertEquals(2, pessoaFisica.getEnderecos().size());
 
-
 	}
-
 
 }

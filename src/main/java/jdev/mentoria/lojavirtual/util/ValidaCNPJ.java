@@ -15,10 +15,8 @@ public class ValidaCNPJ {
 					|| CNPJ.equals("99999999999999") || (CNPJ.length() != 14))
 				return (false);
 
-
 			char dig13, dig14;
 			int sm, i, r, num, peso;
-
 
 			// "try" - protege o código para eventuais erros de conversao de tipo (int)
 			try {

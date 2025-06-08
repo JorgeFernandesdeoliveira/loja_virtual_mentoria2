@@ -94,4 +94,12 @@ public class PessoaUserService {
 		return null;
 	}
 
+	public PessoaFisicaRepository getPessoaFisicaRepository() {
+		return pessoaFisicaRepository;
+	}
+
+	public void setPessoaFisicaRepository(PessoaFisicaRepository pessoaFisicaRepository) {
+		this.pessoaFisicaRepository = pessoaFisicaRepository;
+	}
+
 }

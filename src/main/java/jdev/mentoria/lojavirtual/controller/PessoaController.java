@@ -24,8 +24,6 @@ public class PessoaController {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
-	
-
 	@ResponseBody
 	@PostMapping(value = "**/salvarPj")
 	public ResponseEntity<PessoaJuridica> salvarPj(@RequestBody PessoaJuridica pessoaJuridica) throws ExceptionMentoriaJava{
