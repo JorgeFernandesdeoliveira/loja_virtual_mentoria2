@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-
 import jdev.mentoria.lojavirtual.model.Usuario;
 
 @Repository
@@ -35,7 +34,6 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	@Transactional
 	@Modifying
 	@Query(nativeQuery = true, value = "insert into usuarios_acesso(usuario_id, acesso_id) values (?1, (select id from acesso where descricao = 'ROLE_USER'))")
-	void insereAcessoUserPj(Long iduser);
-
+	void insereAcessoUser(Long iduser);
 
 }

@@ -7,8 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jdev.mentoria.lojavirtual.model.PessoaFisica;
 import jdev.mentoria.lojavirtual.model.PessoaJuridica;
 import jdev.mentoria.lojavirtual.model.Usuario;
+import jdev.mentoria.lojavirtual.repository.PessoaFisicaRepository;
 import jdev.mentoria.lojavirtual.repository.PessoaRepository;
 import jdev.mentoria.lojavirtual.repository.UsuarioRepository;
 
@@ -26,6 +28,9 @@ public class PessoaUserService {
 	
 	@Autowired
 	private ServiceSendEmail serviceSendEmail;
+	
+	@Autowired
+	private PessoaFisicaRepository pessoaFisicaRepository;
 
 	public PessoaJuridica salvarPessoaJuridica(PessoaJuridica juridica) {
 		//juridica = pessoaRepository.save(juridica);
@@ -50,7 +55,7 @@ public class PessoaUserService {
 			}
 			usuarioPj = new Usuario();
 			usuarioPj.setDataAtualSenha(Calendar.getInstance().getTime());
-			usuarioPj.setEmpresa(juridica);
+			usuarioPj.setEmpresa(juridica.getEmpresa());
 			usuarioPj.setPessoa(juridica);
 			usuarioPj.setLogin(juridica.getEmail());
 
@@ -61,7 +66,7 @@ public class PessoaUserService {
 
 			usuarioPj = usuarioRepository.save(usuarioPj);
 
-			usuarioRepository.insereAcessoUserPj(usuarioPj.getId());
+			usuarioRepository.insereAcessoUser(usuarioPj.getId());
 			usuarioRepository.insereAcessoUserPj(usuarioPj.getId(), "ROLE_ADMIN");
 
 						
@@ -82,6 +87,11 @@ public class PessoaUserService {
 		}
 		return juridica;
 
+	}
+
+	public PessoaFisica salvarPessoaFisica(PessoaFisica pessoaFisica) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
