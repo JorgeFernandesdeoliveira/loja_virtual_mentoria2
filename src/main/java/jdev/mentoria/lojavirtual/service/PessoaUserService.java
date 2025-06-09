@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import jdev.mentoria.lojavirtual.model.PessoaFisica;
 import jdev.mentoria.lojavirtual.model.PessoaJuridica;
 import jdev.mentoria.lojavirtual.model.Usuario;
+import jdev.mentoria.lojavirtual.model.dto.CepDTO;
 import jdev.mentoria.lojavirtual.repository.PessoaFisicaRepository;
 import jdev.mentoria.lojavirtual.repository.PessoaRepository;
 import jdev.mentoria.lojavirtual.repository.UsuarioRepository;
@@ -68,7 +70,6 @@ public class PessoaUserService {
 
 			usuarioRepository.insereAcessoUser(usuarioPj.getId());
 			usuarioRepository.insereAcessoUserPj(usuarioPj.getId(), "ROLE_ADMIN");
-
 						
 			StringBuilder mensagemHtml = new StringBuilder();
 
@@ -88,18 +89,17 @@ public class PessoaUserService {
 		return juridica;
 
 	}
+	
+	public CepDTO consultaCep(String cep) {
+		
+		return new RestTemplate().getForEntity("https://viacep.com.br/ws/" + cep + "/json/", CepDTO.class).getBody();
+		
+	}
 
 	public PessoaFisica salvarPessoaFisica(PessoaFisica pessoaFisica) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public PessoaFisicaRepository getPessoaFisicaRepository() {
-		return pessoaFisicaRepository;
-	}
-
-	public void setPessoaFisicaRepository(PessoaFisicaRepository pessoaFisicaRepository) {
-		this.pessoaFisicaRepository = pessoaFisicaRepository;
-	}
 
 }
