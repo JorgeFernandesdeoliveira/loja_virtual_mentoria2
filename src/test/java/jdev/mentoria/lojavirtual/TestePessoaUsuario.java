@@ -33,8 +33,8 @@ public class TestePessoaUsuario extends TestCase {
 		pessoaJuridica.setNome("Jorge Fernandes Teste");
 		pessoaJuridica.setEmail("jorgeoliveira.surdo001@gmail.com");
 		pessoaJuridica.setTelefone("(82)9996465138");
-		pessoaJuridica.setInscEstadual("392815411-8");
-		pessoaJuridica.setInscMunicipal("31182178544");
+		pessoaJuridica.setInscEstadual("392815471-8");
+		pessoaJuridica.setInscMunicipal("311823785-4");
 		pessoaJuridica.setNomeFantasia("ICJWO");
 		pessoaJuridica.setRazaoSocial("Instituto SEGnm Jorge Oliveira");
 
@@ -79,10 +79,10 @@ public class TestePessoaUsuario extends TestCase {
 	@Test
 	public void testCadPessoaFisica() throws ExceptionMentoriaJava {
 		
-		PessoaJuridica pessoaJuridica =  pessoaRepository.existeCnpjCadastrado("1647987989047");
+		PessoaJuridica pessoaJuridica =  pessoaRepository.existeCnpjCadastrado("98.643.974/0001-98");
 		
 		PessoaFisica pessoaFisica = new PessoaFisica();
-		pessoaFisica.setCpf("614.632.460-48");
+		pessoaFisica.setCpf("21239061072");
 		pessoaFisica.setNome("Alex fernando");
 		pessoaFisica.setEmail("alex2@gmail.com");
 		pessoaFisica.setTelefone("45999795800");
