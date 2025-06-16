@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.ForeignKey;
 
 @Entity
@@ -27,67 +29,113 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produto")
 	private Long id;
 
+	@NotNull(message = "O tipo da unidade deve ser informado")
 	@Column(nullable = false)
-	private String TipoUnidade;
+	private String tipoUnidade;
 
+	@Size(min = 15, message = "Nome do produto deve ter mais de 15 letras")
+	@NotNull(message = "Nome do produto deve ser informado")
 	@Column(nullable = false)
 	private String nome;
 
 	@Column(nullable = false)
 	private Boolean ativo = Boolean.TRUE;
 
+	@NotNull(message = "Descrição do produto deve ser informada")
 	@Column(columnDefinition = "text", length = 2000, nullable = false)
 	private String descricao;
 
-	@Column(nullable = false)
-	private String NotaItemProduto;
+	/** Nota item nota produto - ASSOCIAR **/
 
+	@NotNull(message = "Peso deve ser informado")
 	@Column(nullable = false)
-	private Double peso;
+	private Double peso; /* 1000.55 G */
 
+	@NotNull(message = "Largura deve ser informado")
 	@Column(nullable = false)
 	private Double largura;
 
+	@NotNull(message = "Altura deve ser informado")
 	@Column(nullable = false)
 	private Double altura;
 
+	@NotNull(message = "Profundidade")
 	@Column(nullable = false)
 	private Double profundidade;
 
+	@NotNull(message = "Valor de venda deve ser informado")
 	@Column(nullable = false)
 	private BigDecimal valorVenda = BigDecimal.ZERO;
 
 	@Column(nullable = false)
-	private Integer qtdEstoque = 0;
+	private Integer QtdEstoque = 0;
 
-	private Integer qtdeAlertaEstoque = 0;
+	private Integer QtdeAlertaEstoque = 0;
 
 	private String linkYoutube;
 
 	private Boolean alertaQtdeEstoque = Boolean.FALSE;
 
-	private Integer qtdeclique = 0;
-	
+	private Integer qtdeClique = 0;
+
+	@NotNull(message = "A empresa responsável deve ser informada")
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "empresa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
-	private Pessoa empresa;
-	
-	
+	private PessoaJuridica empresa;
 
-	public Pessoa getEmpresa() {
+	@NotNull(message = "A Categoria do Produto deve ser informada")
+	@ManyToOne(targetEntity = CategoriaProduto.class)
+	@JoinColumn(name = "categoria_produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "categoria_produto_id_fk"))
+	private CategoriaProduto categoriaProduto = new CategoriaProduto();
+
+	@NotNull(message = "A Marca do Produto deve ser informada")
+	@ManyToOne(targetEntity = MarcaProduto.class)
+	@JoinColumn(name = "marca_produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "marca_produto_id_fk"))
+	private MarcaProduto marcaProduto = new MarcaProduto();
+
+	@NotNull(message = "A Nota Item do Produto deve ser informada")
+	@ManyToOne(targetEntity = NotaItemProduto.class)
+	@JoinColumn(name = "nota_item_produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "nota_item_produto_id_fk"))
+	private NotaItemProduto notaItemProduto = new NotaItemProduto();
+
+	public void setNotaItemProduto(NotaItemProduto notaItemProduto) {
+		this.notaItemProduto = notaItemProduto;
+	}
+
+	public NotaItemProduto getNotaItemProduto() {
+		return notaItemProduto;
+	}
+
+	public void setMarcaProduto(MarcaProduto marcaProduto) {
+		this.marcaProduto = marcaProduto;
+	}
+
+	public MarcaProduto getMarcaProduto() {
+		return marcaProduto;
+	}
+
+	public void setCategoriaProduto(CategoriaProduto categoriaProduto) {
+		this.categoriaProduto = categoriaProduto;
+	}
+
+	public CategoriaProduto getCategoriaProduto() {
+		return categoriaProduto;
+	}
+
+	public PessoaJuridica getEmpresa() {
 		return empresa;
 	}
 
-	public void setEmpresa(Pessoa empresa) {
+	public void setEmpresa(PessoaJuridica empresa) {
 		this.empresa = empresa;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
 	}
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
 	}
 
 	public Long getId() {
@@ -99,11 +147,11 @@ public class Produto implements Serializable {
 	}
 
 	public String getTipoUnidade() {
-		return TipoUnidade;
+		return tipoUnidade;
 	}
 
 	public void setTipoUnidade(String tipoUnidade) {
-		TipoUnidade = tipoUnidade;
+		this.tipoUnidade = tipoUnidade;
 	}
 
 	public String getNome() {
@@ -120,14 +168,6 @@ public class Produto implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public String getNotaItemProduto() {
-		return NotaItemProduto;
-	}
-
-	public void setNotaItemProduto(String notaItemProduto) {
-		NotaItemProduto = notaItemProduto;
 	}
 
 	public Double getPeso() {
@@ -171,19 +211,19 @@ public class Produto implements Serializable {
 	}
 
 	public Integer getQtdEstoque() {
-		return qtdEstoque;
+		return QtdEstoque;
 	}
 
 	public void setQtdEstoque(Integer qtdEstoque) {
-		this.qtdEstoque = qtdEstoque;
+		QtdEstoque = qtdEstoque;
 	}
 
 	public Integer getQtdeAlertaEstoque() {
-		return qtdeAlertaEstoque;
+		return QtdeAlertaEstoque;
 	}
 
 	public void setQtdeAlertaEstoque(Integer qtdeAlertaEstoque) {
-		this.qtdeAlertaEstoque = qtdeAlertaEstoque;
+		QtdeAlertaEstoque = qtdeAlertaEstoque;
 	}
 
 	public String getLinkYoutube() {
@@ -202,12 +242,12 @@ public class Produto implements Serializable {
 		this.alertaQtdeEstoque = alertaQtdeEstoque;
 	}
 
-	public Integer getQtdeclique() {
-		return qtdeclique;
+	public Integer getQtdeClique() {
+		return qtdeClique;
 	}
 
-	public void setQtdeclique(Integer qtdeclique) {
-		this.qtdeclique = qtdeclique;
+	public void setQtdeClique(Integer qtdeClique) {
+		this.qtdeClique = qtdeClique;
 	}
 
 	@Override
@@ -234,5 +274,6 @@ public class Produto implements Serializable {
 			return false;
 		return true;
 	}
+	
 
 }
