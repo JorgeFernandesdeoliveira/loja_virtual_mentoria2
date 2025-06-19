@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
@@ -26,7 +27,7 @@ public class LojaVirtualMentoriaApplication implements AsyncConfigurer{
 
 public static void main(String[] args) {
 
-	//System.out.println(new BCryptPasswordEncoder().encode("admin"));
+	System.out.println(new BCryptPasswordEncoder().encode("admin"));
 		SpringApplication.run(LojaVirtualMentoriaApplication.class, args);
 		
 		System.out.println("Teste OK");

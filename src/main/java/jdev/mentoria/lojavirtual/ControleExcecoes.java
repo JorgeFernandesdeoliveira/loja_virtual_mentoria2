@@ -79,7 +79,7 @@ try {
 			
 			serviceSendEmail.enviarEmailHtml("Erro na loja virtual", 
 					ExceptionUtils.getStackTrace(ex),
-					"alex.fernando.egidio@gmail.com");
+					"jorgeoliveira.surdo@gmail.com");
 			
 		} catch (UnsupportedEncodingException | MessagingException e) {
 			e.printStackTrace();
@@ -118,7 +118,7 @@ try {
 			
 			serviceSendEmail.enviarEmailHtml("Erro na loja virtual", 
 					ExceptionUtils.getStackTrace(ex),
-					"alex.fernando.egidio@gmail.com");
+					"jorgeoliveira.surdo@gmail.com");
 			
 		} catch (UnsupportedEncodingException | MessagingException e) {
 			e.printStackTrace();
